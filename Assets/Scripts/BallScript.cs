@@ -8,17 +8,33 @@ public class BallScript : MonoBehaviour
     public Rigidbody2D rb;
     public CircleCollider2D cc;
     public float ballForce;
+    public float maximumSpeed;
     private bool turn;
 
     // Use this for initialization
     void Start ()
     {
         turn = false;
+        maximumSpeed = 10;
     }
-	
+
+    void checkVelocity()
+    {
+        float speed = Vector3.Magnitude(rb.velocity);
+        if (speed > maximumSpeed)
+        {
+            float brakeSpeed = speed - maximumSpeed;
+            Vector3 normalisedVelocity = rb.velocity.normalized;
+            Vector3 brakeVelocity = normalisedVelocity * brakeSpeed;
+            rb.AddForce(-brakeVelocity);
+        }
+    }
+
 	// Update is called once per frame
 	void Update ()
     {
+
+        checkVelocity();
 
         if (rb.position.y < -3.3 && Input.GetKeyUp(KeyCode.Space))
         {
