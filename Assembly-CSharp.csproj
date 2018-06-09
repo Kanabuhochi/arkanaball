@@ -51,7 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Curved-Grounds\Menu.cs" />
      <Compile Include="Assets\Curved-Grounds\scripts\CurvedGround.cs" />
      <Compile Include="Assets\Curved-Grounds\scripts\CurvedGround2D.cs" />
      <Compile Include="Assets\Curved-Grounds\scripts\CurvedGround3D.cs" />
@@ -59,6 +58,7 @@
      <Compile Include="Assets\Curved-Grounds\Utils\MathFunctions.cs" />
      <Compile Include="Assets\Scripts\BallScript.cs" />
      <Compile Include="Assets\Scripts\EnemyScript.cs" />
+     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
      <Compile Include="Assets\SimpleParticlePack\Scripts\ParticleTester.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

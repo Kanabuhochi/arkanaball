@@ -53,6 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\Curved-Grounds\editor\CurvedGroundEditor.cs" />
      <Compile Include="Assets\Curved-Grounds\editor\CurvedGroundPointEditor.cs" />
+     <Compile Include="Assets\Curved-Grounds\editor\Menu.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

@@ -58,7 +58,8 @@ public class EnemyScript : MonoBehaviour
                 GetComponent<SpriteRenderer>().enabled = false;
                 GetComponent<BoxCollider2D>().enabled = false;
                 transform.GetChild(0).gameObject.SetActive(false);
-                StartCoroutine(Wait(3));   
+                StartCoroutine(Wait(3));
+                GameObject.Find("Spawner").GetComponent<EnemySpawner>().enemies -= 1;
             }
         }
     }
