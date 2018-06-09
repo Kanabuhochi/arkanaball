@@ -10,7 +10,7 @@ public class BallScript : MonoBehaviour
     public float ballForce;
     private bool turn;
 
-    public float maxVelocity;
+    private float maxVelocity = 15;
     private float sqrMaxVelocity;
 
     // Use this for initialization
