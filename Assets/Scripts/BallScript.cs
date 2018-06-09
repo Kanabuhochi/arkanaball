@@ -10,17 +10,33 @@ public class BallScript : MonoBehaviour
     public float ballForce;
     private bool turn;
 
+    public float maxVelocity;
+    private float sqrMaxVelocity;
+
     // Use this for initialization
     void Start ()
     {
+        SetMaxVelocity(maxVelocity);
         turn = false;
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    void SetMaxVelocity(float maxVelocity)
+    {
+        this.maxVelocity = maxVelocity;
+        sqrMaxVelocity = maxVelocity * maxVelocity;
+    }
+
+    // Update is called once per frame
+    void Update ()
     {
 
-        if (rb.position.y < -3.3 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        var v = rb.velocity;
+        // Clamp the velocity, if necessary
+        // Use sqrMagnitude instead of magnitude for performance reasons.
+        if (v.sqrMagnitude > sqrMaxVelocity)
+            rb.velocity = v.normalized * maxVelocity;
+
+            if (rb.position.y < -3.3 && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             cc.sharedMaterial = (PhysicsMaterial2D)Resources.Load("Bounce");
             rb.velocity = new Vector2(-rb.position.x, 10);
@@ -62,4 +78,6 @@ public class BallScript : MonoBehaviour
          }
 
     }
+
+    
 }
