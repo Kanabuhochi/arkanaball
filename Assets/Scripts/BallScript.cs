@@ -16,6 +16,7 @@ public class BallScript : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        DontDestroyOnLoad(this.gameObject);
         SetMaxVelocity(maxVelocity);
         turn = false;
     }
