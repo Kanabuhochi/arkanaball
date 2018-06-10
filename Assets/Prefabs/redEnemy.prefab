@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372c2132bdfa11042b80e995fe591234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 3
+  startingHealth: 1
   collisionParticlePrefab: {fileID: 198119736070016354}
   healthBar: {fileID: 114163114512458616}
 --- !u!198 &198119736070016354

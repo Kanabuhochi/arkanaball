@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour {
         {
             enemies = 3;
             level++;
-            Debug.Log(level);
+            
             ChangeLevel();
             GameObject.Find("ScoreManager").GetComponent<ScoreManager>().Show();
             Invoke("Spawn",1.5f);
@@ -43,19 +43,22 @@ public class EnemySpawner : MonoBehaviour {
     {
         GameObject.Find("ScoreManager").GetComponent<ScoreManager>().Hide();
         levelImage.SetActive(true);
+        int lvl = Random.Range(1, 8);
+        Debug.Log(lvl);
+        SceneManager.LoadScene("S"+lvl);
         Invoke("HideLevelImage", 2f);
-        SceneManager.LoadScene("S"+level);
-        
+
+
     }
 
     private void HideLevelImage()
     {
+        Debug.Log("hide");
         levelImage.SetActive(false);
     }
 
     void Spawn()
     {
-        Debug.Log("Spawn Called");
         Vector2 spawn = new Vector2(0.06f,3.63f);
         Instantiate(enemy, spawn, Quaternion.identity);
         spawn = new Vector2(-1.69f, 1.19f);
