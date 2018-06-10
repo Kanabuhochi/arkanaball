@@ -60,6 +60,7 @@ public class EnemyScript : MonoBehaviour
                 transform.GetChild(0).gameObject.SetActive(false);
                 StartCoroutine(Wait(3));
                 GameObject.Find("Spawner").GetComponent<EnemySpawner>().enemies -= 1;
+                GameObject.Find("ScoreManager").GetComponent<ScoreManager>().IncrementScore();
             }
         }
     }

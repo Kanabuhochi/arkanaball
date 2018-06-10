@@ -1377,6 +1377,7 @@ MonoBehaviour:
   rb: {fileID: 2007083805}
   cc: {fileID: 2007083802}
   ballForce: 461.2
+  maxVelocity: 0
 --- !u!1 &2092675512
 GameObject:
   m_ObjectHideFlags: 0
