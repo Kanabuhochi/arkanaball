@@ -54,7 +54,8 @@ public class EnemyScript : MonoBehaviour
             {   
                 tempCollisionParticle = Instantiate(collisionParticlePrefab, transform.position, Quaternion.identity) as ParticleSystem;
                 tempCollisionParticle.Play();
-                deathSound.Play();
+                AudioClip clip = Resources.Load("Audio/grunt1") as AudioClip;
+                deathSound.PlayOneShot(clip);
                 GetComponent<SpriteRenderer>().enabled = false;
                 GetComponent<BoxCollider2D>().enabled = false;
                 transform.GetChild(0).gameObject.SetActive(false);
