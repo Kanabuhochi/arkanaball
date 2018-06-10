@@ -14,15 +14,18 @@ public class BallScript : MonoBehaviour
     public CircleCollider2D cc;
     public float ballForce;
     private bool turn;
-    
+
     private float maxVelocity = 15;
     private float sqrMaxVelocity;
 
     // Use this for initialization
+
+
     void Start ()
     {
         DontDestroyOnLoad(this.gameObject);
-        dragDistance = Screen.height *15 / 100; //dragDistance is 15% height of the screen
+       
+        dragDistance = Screen.height *25 / 100; //dragDistance is 15% height of the screen
         SetMaxVelocity(maxVelocity);
         turn = false;
         swipes = 1;
@@ -37,6 +40,7 @@ public class BallScript : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        
 
         var v = rb.velocity;
         // Clamp the velocity, if necessary
@@ -48,9 +52,28 @@ public class BallScript : MonoBehaviour
         {
             cc.sharedMaterial = (PhysicsMaterial2D)Resources.Load("Bounce");
             rb.velocity = new Vector2(-rb.position.x, 10);
+
+
         }
         else
         {
+
+
+            float xx = Input.acceleration.x;
+
+            if (xx < -0.5 && swipes > 0 && cc.sharedMaterial == (PhysicsMaterial2D)Resources.Load("Bounce"))
+            {
+                rb.velocity = new Vector2(rb.velocity.x - 3, rb.velocity.y);
+                swipes--;
+                Debug.Log(xx);
+            }
+            else if (xx > 0.5 && swipes > 0 && cc.sharedMaterial == (PhysicsMaterial2D)Resources.Load("Bounce"))
+            {
+                Debug.Log(xx);
+                rb.velocity = new Vector2(rb.velocity.x + 3, rb.velocity.y);
+                swipes--;
+            }
+
             if (Input.touchCount == 1) // user is touching the screen with a single touch
             {
                 Touch touch = Input.GetTouch(0); // get the touch
@@ -75,18 +98,20 @@ public class BallScript : MonoBehaviour
                         {   //If the horizontal movement is greater than the vertical movement...
                             if ((lp.x > fp.x))  //If the movement was to the right)
                             {   //Right swipe
-                                Debug.Log("Right Swipe");
+
                                 if (swipes > 0)
                                 {
+                                    Debug.Log("swipe right");
                                     rb.velocity = new Vector2(rb.velocity.x + 3, rb.velocity.y);
                                     swipes--;
                                 }
                             }
                             else
                             {   //Left swipe
-                                Debug.Log("Left Swipe");
+
                                 if (swipes > 0)
                                 {
+                                    Debug.Log("swipe left");
                                     rb.velocity = new Vector2(rb.velocity.x - 3, rb.velocity.y);
                                     swipes--;
                                 }

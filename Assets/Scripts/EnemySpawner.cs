@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
@@ -44,7 +43,6 @@ public class EnemySpawner : MonoBehaviour {
         GameObject.Find("ScoreManager").GetComponent<ScoreManager>().Hide();
         levelImage.SetActive(true);
         int lvl = Random.Range(1, 8);
-        Debug.Log(lvl);
         SceneManager.LoadScene("S"+lvl);
         Invoke("HideLevelImage", 2f);
 
@@ -53,7 +51,6 @@ public class EnemySpawner : MonoBehaviour {
 
     private void HideLevelImage()
     {
-        Debug.Log("hide");
         levelImage.SetActive(false);
     }
 

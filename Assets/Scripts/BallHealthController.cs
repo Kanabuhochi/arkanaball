@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BallHealthController : MonoBehaviour {
 
@@ -31,7 +32,9 @@ public class BallHealthController : MonoBehaviour {
                 healthBar.fillAmount = currentHealth / startingHealth;
                 if (currentHealth <= 0)
                 {
-                    Destroy(gameObject);
+                    
+                    SceneManager.LoadScene("zGameOver");
+                    Invoke("Restart", 3f);
                 }
                 GetComponent<Animation>().Play("ballBlinking");
                 invincible = true;
@@ -39,5 +42,13 @@ public class BallHealthController : MonoBehaviour {
                 invincible = false;
             }
         }
+    }
+
+    private void Restart()
+    {
+        Debug.Log("restart");
+        SceneManager.LoadScene("Menu");
+        Destroy(gameObject);
+        Destroy(GameObject.Find("ScoreManager"));
     }
 }
