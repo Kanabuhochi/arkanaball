@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ball
   - Projectile
+  - Bumper
   layers:
   - Default
   - TransparentFX

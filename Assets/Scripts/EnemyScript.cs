@@ -10,21 +10,21 @@ public class EnemyScript : MonoBehaviour
 
     public float startingHealth;
     private float currentHealth;
+    public GameObject ball;
 
     private int bumpForce = 300;
-    private GameObject ball;
 
     public ParticleSystem collisionParticlePrefab;
     private ParticleSystem tempCollisionParticle;
 
     public Image healthBar;
+    public char type;
 
     private AudioSource deathSound;
 
     // Use this for initialization
     void Start ()
     {
-        ball = GameObject.FindGameObjectWithTag("Ball");
         currentHealth = startingHealth;
 
         deathSound = GetComponent<AudioSource>();
@@ -44,11 +44,17 @@ public class EnemyScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject == ball)
+        if (col.gameObject.tag == "Ball")
         {
+            float damageMultiplier = 1f;
+            if(GameObject.FindGameObjectWithTag("Ball").GetComponent<BallScript>().type == type)
+            {
+            damageMultiplier = 0.5f;
+            }
+            ball = GameObject.FindGameObjectWithTag("Ball");
             AddExplosionForce(ball, bumpForce);
             GetComponent<Animation>().Play("bounce");
-            currentHealth -= 1;
+            currentHealth -= GameObject.FindGameObjectWithTag("Ball").GetComponent<BallScript>().damage * damageMultiplier;
             healthBar.fillAmount = currentHealth/startingHealth;
             if (currentHealth <= 0)
             {   

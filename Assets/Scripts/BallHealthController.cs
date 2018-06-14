@@ -5,17 +5,17 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class BallHealthController : MonoBehaviour {
-
     public float startingHealth;
-    private float currentHealth;
+    public float currentHealth;
     public Image healthBar;
-    bool invincible = false;
+    public bool invincible = false;
 
     // Use this for initialization
     void Start ()
     {
-        currentHealth = startingHealth;
-	}
+        healthBar = GameObject.Find("Player/HealthBar/Background/Health").GetComponent<Image>();
+        healthBar.fillAmount = currentHealth / startingHealth;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,9 +32,13 @@ public class BallHealthController : MonoBehaviour {
                 healthBar.fillAmount = currentHealth / startingHealth;
                 if (currentHealth <= 0)
                 {
-                    
-                    SceneManager.LoadScene("zGameOver");
-                    Invoke("Restart", 3f);
+                    GameObject.Find("Player").GetComponent<PlayerController>().ballsCounter--;
+                    if (GameObject.Find("Player").GetComponent<PlayerController>().ballsCounter <= 0)
+                    {
+                        SceneManager.LoadScene("zGameOver");
+                        Invoke("Restart", 3f);
+                    }
+                    GameObject.Find("Player").GetComponent<PlayerController>().changeBall();
                 }
                 GetComponent<Animation>().Play("ballBlinking");
                 invincible = true;

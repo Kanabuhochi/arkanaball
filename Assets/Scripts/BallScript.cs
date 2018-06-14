@@ -15,16 +15,18 @@ public class BallScript : MonoBehaviour
     public float ballForce;
     private bool turn;
 
+    public char type;
+
     private float maxVelocity = 15;
     private float sqrMaxVelocity;
+
+    public float damage = 1;
 
     // Use this for initialization
 
 
     void Start ()
     {
-        DontDestroyOnLoad(this.gameObject);
-       
         dragDistance = Screen.height *25 / 100; //dragDistance is 15% height of the screen
         SetMaxVelocity(maxVelocity);
         turn = false;
@@ -96,26 +98,7 @@ public class BallScript : MonoBehaviour
                      //check if the drag is vertical or horizontal
                         if (Mathf.Abs(lp.x - fp.x) > Mathf.Abs(lp.y - fp.y))
                         {   //If the horizontal movement is greater than the vertical movement...
-                            if ((lp.x > fp.x))  //If the movement was to the right)
-                            {   //Right swipe
-
-                                if (swipes > 0)
-                                {
-                                    Debug.Log("swipe right");
-                                    rb.velocity = new Vector2(rb.velocity.x + 3, rb.velocity.y);
-                                    swipes--;
-                                }
-                            }
-                            else
-                            {   //Left swipe
-
-                                if (swipes > 0)
-                                {
-                                    Debug.Log("swipe left");
-                                    rb.velocity = new Vector2(rb.velocity.x - 3, rb.velocity.y);
-                                    swipes--;
-                                }
-                            }
+                           
                         }
                     }
                 }
@@ -160,7 +143,10 @@ public class BallScript : MonoBehaviour
             cc.sharedMaterial = (PhysicsMaterial2D)Resources.Load("Slide");
          }
 
-    }
+    }  
 
-    
+    public void Delete()
+    {
+        Destroy(gameObject);
+    }
 }
