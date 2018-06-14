@@ -419,6 +419,7 @@ MonoBehaviour:
   startingHealth: 3
   collisionParticlePrefab: {fileID: 198186927991483744}
   healthBar: {fileID: 114236884563482758}
+  type: 114
 --- !u!198 &198186927991483744
 ParticleSystem:
   m_ObjectHideFlags: 1
